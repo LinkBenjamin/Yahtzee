@@ -1,0 +1,24 @@
+package com.benlink.enums;
+
+public enum MenuChoice {
+	ONES,
+	TWOS,
+	THREES,
+	FOURS,
+	FIVES,
+	SIXES,
+	THREEOFAKIND,
+	FOUROFAKIND,
+	FULLHOUSE,
+	SMALLSTRAIGHT,
+	LARGESTRAIGHT,
+	CHANCE,
+	YAHTZEE,
+	
+	HOLD1,
+	HOLD2,
+	HOLD3,
+	HOLD4,
+	HOLD5,
+	REROLL
+}

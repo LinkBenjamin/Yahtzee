@@ -1,7 +1,9 @@
 package com.benlink.driver;
 
-import com.benlink.model.Cup;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import com.benlink.model.*;
 
 public class Thing {
 
@@ -14,10 +16,10 @@ public class Thing {
         Player winner;
         
         do {
-            game = new YahtzeeGame(keyboard);
-            
             //Initialize Player List
             players = getPlayerInfo(keyboard);
+            
+            game = new YahtzeeGame(keyboard, players);
             
             //Play a Game
             game.play();

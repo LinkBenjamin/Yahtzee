@@ -43,6 +43,11 @@ public class Cup {
     } // end play()
     
     public void display(){
-            
+    	System.out.println("+-----.-----.-----.-----.-----.-----+");
+    	System.out.println("|Die  |  1  |  2  |  3  |  4  |  5  |");
+    	System.out.println("+-----.-----.-----.-----.-----.-----+");
+    	System.out.println("      |  " + die1.getValue() + "  |  " + die2.getValue() + "  |  " + die3.getValue() + "  |  " + die4.getValue() + "  |  " + die5.getValue() + "  |");
+    	System.out.println("      +-----.-----.-----.-----.-----+");
+    	
     } // end Display()
 }
