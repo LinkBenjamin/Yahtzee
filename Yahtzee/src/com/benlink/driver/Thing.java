@@ -10,13 +10,14 @@ public class Thing {
         Scanner keyboard = new Scanner(System.in);
         boolean QUIT = false;
         YahtzeeGame game;
+        List<Player> players;
         Player winner;
         
         do {
             game = new YahtzeeGame(keyboard);
             
             //Initialize Player List
-            game.initialize();
+            players = getPlayerInfo(keyboard);
             
             //Play a Game
             game.play();
@@ -32,6 +33,31 @@ public class Thing {
         } while (!QUIT);
         
         keyboard.close();
+    }
+    
+    /**
+     * getPlayerInfo() assembles a list of players for the current round.  
+     * It will at some point need to get their names from the user.
+     * 
+     * @param console The input device.     * 
+     * @return a List of Players who are going to play this round.
+     */
+    private static List<Player> getPlayerInfo(Scanner console) {
+    	List<Player> response = new ArrayList<Player>();
+    	int playerCount = 0;
+    	
+    	do{
+    		Player newPlayer = new Player();
+    		
+    		newPlayer.setName(askUserString("Enter player " + ++playerCount + "'s name: ", console));
+            
+            //TODO: When you finish making the player
+    		
+    		response.add(newPlayer);
+    		
+    	} while (askUserBoolean("Add another player? (y/n):", console));
+    	
+    	return response;
     }
     
     /**
@@ -80,6 +106,34 @@ public class Thing {
          } while(!valid);
             
         return response;
+    }
+    
+    /**
+     * Ask the user a question.  Get an response
+     * 
+     * @param prompt  What are you asking?
+     * @param console The input object
+     * @return a String.
+     */
+    private static int askUserNumber(String prompt, Scanner console) {
+        
+        System.out.print(prompt);
+        
+        return console.nextInt();
+    }
+    
+        /**
+     * Ask the user a question.  Get a String response
+     * 
+     * @param prompt  What are you asking?
+     * @param console The input object
+     * @return a String.
+     */
+    private static String askUserString(String prompt, Scanner console) {
+        
+        System.out.print(prompt);
+        
+        return console.next();
     }
 
 }
