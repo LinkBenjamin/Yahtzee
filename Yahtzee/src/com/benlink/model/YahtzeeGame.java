@@ -4,12 +4,9 @@ public Class YahtzeeGame() {
     private Scanner ioDevice;
     private List<Player> players;
     
-    public YahtzeeGame() {
-        setIoDevice(new Scanner(System.in));
-    } 
-    
-    public YahtzeeGame(Scanner device) {
+    public YahtzeeGame(Scanner device, List<Player> playerList) {
         setIoDevice(device);
+        setPlayers(playerList);
     }
     
     public Scanner getIoDevice(){
@@ -20,10 +17,12 @@ public Class YahtzeeGame() {
         ioDevice = device;
     }
     
+    public List<Player> getPlayers() {
+        return players;
+    }
     
-    public initialize() {
-        //Get player lists
-        
+    public void setPlayers(List<Player> playerList){
+        players = playerList;
     }
     
     public void play() {
