@@ -39,6 +39,46 @@ public class ScoreCard {
         
     }
     
+    public boolean hasPlayedOnes(){
+    	return ones >= 0;
+    }
+    public boolean hasPlayedTwos(){
+    	return twos >= 0;
+    }
+    public boolean hasPlayedThrees(){
+    	return threes >= 0;
+    }
+    public boolean hasPlayedFours(){
+    	return fours >= 0;
+    }
+    public boolean hasPlayedFives(){
+    	return fives >= 0;
+    }
+    public boolean hasPlayedSixes(){
+    	return sixes >= 0;
+    }
+    public boolean hasPlayedThreeOfAKind(){
+    	return threeOfAKind >= 0;
+    }
+    public boolean hasPlayedFourOfAKind(){
+    	return fourOfAKind >= 0;
+    }
+    public boolean hasPlayedYahtzee(){
+    	return yahtzee >= 0;
+    }
+    public boolean hasPlayedFullHouse(){
+    	return fullHouse >= 0;
+    }
+    public boolean hasPlayedSmallStraight(){
+    	return lowStraight >= 0;
+    }
+    public boolean hasPlayedLargeStraight(){
+    	return highStraight >= 0;
+    }
+    public boolean hasPlayedChance(){
+    	return chance >= 0;
+    }
+    
     public int getOnes() {
         if(ones < 0){
             return 0;
@@ -196,16 +236,44 @@ public class ScoreCard {
     }
     
     public void displayCard(){
-        
+    	System.out.println(" ");
+    	System.out.println("+---------------+");
+    	System.out.println("| Ones          |  " + getOnes() );
+    	System.out.println("| Twos          |  " + getTwos() );
+    	System.out.println("| Threes        |  " + getThrees() );
+    	System.out.println("| Fours         |  " + getFours() );
+    	System.out.println("| Fives         |  " + getFives() );
+    	System.out.println("| Sixes         |  " + getSixes() );
+    	System.out.println("+---------------+" );
+    	System.out.println("| Subtotal 1:   |  " + evaluateSubtotal1() );
+    	System.out.println("| Bonus:        |  " + evaluateBonus() );
+    	System.out.println("+---------------+");
+    	System.out.println("| 3 of a Kind   |  " + getThreeOfAKind() );
+    	System.out.println("| 4 of a Kind   |  " + getFourOfAKind() );
+    	System.out.println("| Full House    |  " + getFullHouse() );
+    	System.out.println("| Sm Straight   |  " + getLowStraight() );
+    	System.out.println("| Lg Straight   |  " + getHighStraight() );
+    	System.out.println("| Yahtzee       |  " + getYahtzee() );
+    	System.out.println("| Chance        |  " + getChance() );
+    	System.out.println("+---------------+");
+    	System.out.println("| Subtotal 2:   |  " + evaluateSubtotal2() );
+    	System.out.println("+---------------+");
+    	System.out.println("| Total         |  " + evaluateFinalScore() );
+    	System.out.println("+---------------+");
+    	System.out.println(" ");    	
+    }
+    
+    public int evaluateBonus(){
+    	if(evaluateSubtotal1() > SUBTOTAL_1_BONUS_THRESHOLD){
+    		return SUBTOTAL_1_BONUS_AMOUNT;
+    	} else {
+    		return 0;
+    	}
     }
     
     public int evaluateSubtotal1(){
         int score = getOnes() + getTwos() + getThrees() + getFours() + getFives() + getSixes();
-        
-        if(score > SUBTOTAL_1_BONUS_THRESHOLD){
-            score += SUBTOTAL_1_BONUS_AMOUNT;
-        }
-        
+                
         return score;
     }
     
@@ -216,6 +284,6 @@ public class ScoreCard {
     }
     
     public int evaluateFinalScore(){
-        return evaluateSubtotal1() + evaluateSubtotal2();
+        return evaluateSubtotal1() + evaluateBonus() + evaluateSubtotal2();
     }
 }

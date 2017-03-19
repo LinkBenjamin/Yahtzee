@@ -51,7 +51,15 @@ public class YahtzeeGame {
     	Player returnValue = null;
     	
     	for(Player player: players){
+    		
     		int myScore = player.getScoreCard().evaluateFinalScore();
+    		
+    		System.out.println(player.getName() + " scored " + myScore);
+    		
+    		System.out.println("Scorecard:");
+    		
+    		player.getScoreCard().displayCard();
+    		
     		if(myScore > bestScore) {
     			bestScore = myScore;
     			returnValue = player;

@@ -84,4 +84,20 @@ public class Die {
     public boolean equals(Die die){
         return (getValue() == die.getValue());
     } // End of equals()
+
+	public int compareTo(Die a) {
+		final int BEFORE = -1;
+	    final int EQUAL = 0;
+	    final int AFTER = 1;
+
+	    //this optimization is usually worthwhile, and can
+	    //always be added
+	    if (this == a) return EQUAL;
+	    
+	    //primitive numbers follow this form
+	    if (this.getValue() < a.getValue()) return BEFORE;
+	    if (this.getValue() > a.getValue()) return AFTER;
+	    
+	    return EQUAL;
+	}
 }

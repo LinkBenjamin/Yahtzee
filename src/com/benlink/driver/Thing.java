@@ -69,7 +69,7 @@ public class Thing {
      * 
      */
     private static void announceWinner(Player winner){
-        System.out.println("Haven't written it yet");
+        System.out.println("The winner is... " + winner.getName() + "!!!!!");
     }
     /**
      * Ask the user a question.  Get a yes or no answer.
@@ -110,19 +110,19 @@ public class Thing {
         return response;
     }
     
-    /**
-     * Ask the user a question.  Get an response
-     * 
-     * @param prompt  What are you asking?
-     * @param console The input object
-     * @return a String.
-     */
-    private static int askUserNumber(String prompt, Scanner console) {
-        
-        System.out.print(prompt);
-        
-        return console.nextInt();
-    }
+//    /**
+//     * Ask the user a question.  Get an response
+//     * 
+//     * @param prompt  What are you asking?
+//     * @param console The input object
+//     * @return a String.
+//     */
+//    private static int askUserNumber(String prompt, Scanner console) {
+//        
+//        System.out.print(prompt);
+//        
+//        return console.nextInt();
+//    }
     
         /**
      * Ask the user a question.  Get a String response
