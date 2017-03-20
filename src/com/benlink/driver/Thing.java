@@ -5,8 +5,19 @@ import java.util.List;
 import java.util.Scanner;
 import com.benlink.model.*;
 
+/**
+ * @author Ben Link
+ * Project Whatever-Number-This-Is: Yahtzee
+ * Due 20 Mar 2017
+ * 
+ */
 public class Thing {
 
+    /**
+     * Main entry point for Yahtzee.  Short & Sweet.
+     * 
+     * @param args Ya know, they're args and stuff.
+     */
     public static void main(String[] args) {
         
         Scanner keyboard = new Scanner(System.in);
@@ -35,7 +46,7 @@ public class Thing {
         } while (!QUIT);
         
         keyboard.close();
-    }
+    }// End Main
     
     /**
      * getPlayerInfo() assembles a list of players for the current round.  
@@ -60,7 +71,7 @@ public class Thing {
     	} while (askUserBoolean("Add another player? (y/n):", console));
     	
     	return response;
-    }
+    } // end getPlayerInfo
     
     /**
      * Announce the winning player and show their scorecard
@@ -70,7 +81,8 @@ public class Thing {
      */
     private static void announceWinner(Player winner){
         System.out.println("The winner is... " + winner.getName() + "!!!!!");
-    }
+    } // end announceWinner
+    
     /**
      * Ask the user a question.  Get a yes or no answer.
      * 
@@ -108,23 +120,9 @@ public class Thing {
          } while(!valid);
             
         return response;
-    }
+    } // end askUserBoolean
     
-//    /**
-//     * Ask the user a question.  Get an response
-//     * 
-//     * @param prompt  What are you asking?
-//     * @param console The input object
-//     * @return a String.
-//     */
-//    private static int askUserNumber(String prompt, Scanner console) {
-//        
-//        System.out.print(prompt);
-//        
-//        return console.nextInt();
-//    }
-    
-        /**
+    /**
      * Ask the user a question.  Get a String response
      * 
      * @param prompt  What are you asking?
@@ -136,6 +134,6 @@ public class Thing {
         System.out.print(prompt);
         
         return console.next();
-    }
+    } // end askUserString
 
-}
+} // end class Thing

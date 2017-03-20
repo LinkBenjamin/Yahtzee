@@ -6,30 +6,67 @@ import java.util.Scanner;
 
 import com.benlink.enums.MenuChoice;
 
+/**
+ * Players gonna play play play play play...
+ * 
+ * @author Ben Link
+ *
+ */
 public class Player {
 	private String name;
 	private ScoreCard scoreCard;
 	
+	/**
+	 * Constructors gonna construct
+	 */
 	public Player(){
 		setScoreCard(new ScoreCard());
-	}
+	} // end constructor
 
+	/**
+	 * gets the Name.  Profound.
+	 * 
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
-	}
+	} // end getName
 
+	/**
+	 * sets the Name.  Profound.
+	 * 
+	 * @param name the name
+	 */
 	public void setName(String name) {
 		this.name = name;
-	}
+	} //end setName
 
+	/**
+	 * gets the player's scorecard.
+	 * 
+	 * @return the scorecard.
+	 */
 	public ScoreCard getScoreCard() {
 		return scoreCard;
-	}
+	} // end getScoreCard
 
+	/**
+	 * sets the player's scorecard.
+	 * 
+	 * @param scoreCard the scorecard.
+	 */
 	public void setScoreCard(ScoreCard scoreCard) {
 		this.scoreCard = scoreCard;
-	}
+	} // end setScoreCard
 
+	/**
+	 * How to take a player's turn.
+	 * They can roll any or all of the dice up to 3 distinct times.
+	 * Then they have to select where it goes.
+	 * 
+	 * @param dice  The dice.
+	 * @param ioDevice The device.
+	 */
 	public void takeTurn(Cup dice, Scanner ioDevice) {
 		System.out.println("It's " + name + "'s turn. " + name + "'s scorecard: ");
 		
@@ -39,6 +76,9 @@ public class Player {
 		boolean scoreAccepted = false;
 		boolean roll1 = true, roll2 = true, roll3 = true, roll4 = true, roll5 = true;
 		
+		//Outer loop: roll the selected dice.
+		//tell 'em what they won.
+
 		do {
 			boolean repeatMenu = true;
 			
@@ -46,6 +86,9 @@ public class Player {
 			
 			System.out.println(name + " has rolled the following dice: ");
 			
+			//Inner loop: let 'em select dice to hold and re-roll,
+			//or just elect to score right away.
+			//they get up to 3 rolls.
 			do{
 				
 				dice.display();
@@ -109,12 +152,21 @@ public class Player {
 					repeatMenu = false;
 					break;
 				}
-			} while (repeatMenu);
-			
-		} while (!scoreAccepted && (subRoundNumber <= 3));
+			} while (repeatMenu); //end inner loop
+						
+		} while (!scoreAccepted && (subRoundNumber <= 3)); //end outer loop
 		
-	}
+	} // end takeTurn
 
+	/**
+	 * Display an X on the dice that they've elected to hold.
+	 * 
+	 * @param roll1 Hold die1?
+	 * @param roll2 Hold die2?
+	 * @param roll3 Hold die3?
+	 * @param roll4 Hold die4?
+	 * @param roll5 Hold die5?
+	 */
 	private void displayHolds(boolean roll1, boolean roll2, boolean roll3, boolean roll4, boolean roll5) {
 		System.out.print("|Hold |  ");
 		if(roll1){
@@ -150,8 +202,15 @@ public class Player {
 		System.out.println(" ");
 		System.out.println("+-----+-----+-----+-----+-----+-----+");
 		
-	}
+	} // end DisplayHolds
 
+	/**
+	 * Set the score in the place on the card that they elected
+	 * to put it.
+	 * 
+	 * @param dice the current dice.
+	 * @param choice the place on the card.
+	 */
 	private void score(Cup dice, MenuChoice choice) {
 		int scoreValue = dice.evaluate(choice);
 		
@@ -197,9 +256,19 @@ public class Player {
 			break;
 		default:
 			break;
-		}
-	}
+		} // end switch
+	} // end score
 
+	/**
+	 * Display the turn menu.
+	 * Only display the options they're allowed to pick.
+	 * And only allow them to pick the options they're allowed to pick.
+	 * 
+	 * @param dice the dice.
+	 * @param subRoundNumber which roll they're on in their turn (1-3)
+	 * @param ioDevice the io device.
+	 * @return which option they selected.
+	 */
 	private MenuChoice turnMenu(Cup dice, int subRoundNumber, Scanner ioDevice) {
 		// for each item in the enum
 		List<String> validMoves = new ArrayList<String>();
@@ -227,7 +296,7 @@ public class Player {
 				}
 			}
 				
-		}
+		} // end for
 		
 		// set validResponse = false
 		boolean validResponse = false;
@@ -246,8 +315,15 @@ public class Player {
 		
 		// return the valid, selected enum value
 		return MenuChoice.getMenuChoiceByMenuOption(response);
-	}
+	} // end turnMenu
 
+	/**
+	 * Find out if they've already played in this slot.
+	 * can't overwrite a value we already had.
+	 * 
+	 * @param item the slot.
+	 * @return whether they've played there already.
+	 */
 	private boolean hasPlayed(MenuChoice item) {
 		boolean response = true;
 		
@@ -297,7 +373,7 @@ public class Player {
 		}
 		
 		return response;
-	}
+	} // end hasPlayed
 	
     /**
      * Ask the user a question.  Get a character response
@@ -311,5 +387,5 @@ public class Player {
         System.out.print(prompt);
         
         return console.next().trim().charAt(0);
-    }
-}
+    } //end askUserChar
+} // end class Player.

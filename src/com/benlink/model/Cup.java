@@ -7,7 +7,7 @@ import java.util.List;
 import com.benlink.enums.MenuChoice;
 
 /**
- * It's a cup o' dice.
+ * It's a cup. o' dice.
  * 
  * @author Ben Link
  *
@@ -21,6 +21,9 @@ public class Cup {
     private Die die4;
     private Die die5;
         
+    /**
+     *  Constructors gonna construct...
+     */
     public Cup(){
         die1 = new Die(DEFAULT_DICE_SIDES);
         die2 = new Die(DEFAULT_DICE_SIDES);
@@ -29,6 +32,16 @@ public class Cup {
         die5 = new Die(DEFAULT_DICE_SIDES);
     } // end default constructor
     
+    /**
+     * Rolls all the dice that you've selected.
+     * Yes, you can select for some dice not to be rolled.
+     * 
+     * @param roll1 Roll die 1?
+     * @param roll2 Roll die 2?
+     * @param roll3 Roll die 3?
+     * @param roll4 Roll die 4?
+     * @param roll5 Roll die 5?
+     */
     public void play(boolean roll1, boolean roll2, boolean roll3, boolean roll4, boolean roll5){
         if(roll1){
             die1.roll();
@@ -48,6 +61,9 @@ public class Cup {
         
     } // end play()
     
+    /**
+     * Display the contents of the cup.
+     */
     public void display(){
     	System.out.println(" ");
     	System.out.println("+-----.-----.-----.-----.-----.-----+");
@@ -57,6 +73,12 @@ public class Cup {
     	System.out.println("+-----+-----.-----.-----.-----.-----+");
     } // end Display()
 
+	/**
+	 * Evaluate the cup against the given scoring choice.
+	 * 
+	 * @param choice The choice they've made for scoring.
+	 * @return The score that should be assigned to that entry.
+	 */
 	public int evaluate(MenuChoice choice) {
 		int score = 0;
 		
@@ -164,8 +186,14 @@ public class Cup {
 			break;
 		}
 		return score;
-	}
+	} // end evaluate
 
+	/**
+	 * Counts the number of unique values on the 5 dice.
+	 * 
+	 * @param dice The list of dice (MUST BE SORTED IN ASCENDING ORDER)
+	 * @return the number of unique values shown.
+	 */
 	private int countUniqueValues(List<Die> dice) {
 		int uniqueValues = 0;
 		int lastValue = 0;
@@ -178,8 +206,14 @@ public class Cup {
 		}
 		
 		return uniqueValues;
-	}
+	} // end countUniqueValues
 
+	/**
+	 * calculate the length of the longest straight
+	 * 
+	 * @param dice the list of dice (MUST BE SORTED IN ASCENDING ORDER)
+	 * @return the length of the longest straight
+	 */
 	private int calculateStraight(List<Die> dice) {
 		int returnValue = 0;
 		int previousDie = 0;
@@ -196,8 +230,14 @@ public class Cup {
 			}
 		}
 		return returnValue++;
-	}
+	} // end calculateStraight
 
+	/**
+	 * the sum of the values of the dice
+	 * 
+	 * @param dice the list of dice
+	 * @return the sum
+	 */
 	private int sum(List<Die> dice) {
 		int result = 0;
 		
@@ -206,8 +246,16 @@ public class Cup {
 		}
 		
 		return result;
-	}
+	} // end sum
 
+	/**
+	 * Count the number of dice of a kind.
+	 * If there are multiple groups, it returns the largest
+	 * (a full house would return 3, for example)
+	 * 
+	 * @param dice the dice(MUST BE SORTED IN ASCENDING ORDER)
+	 * @return the number of-a-kind
+	 */
 	private int countOfAKind(List<Die> dice) {
 		int largestOfAKind = 0;
 		int ofAKind = 0;
@@ -235,5 +283,5 @@ public class Cup {
 		}
 		
 		return largestOfAKind;
-	}
-}
+	} // end countOfAKind
+} // end class Cup

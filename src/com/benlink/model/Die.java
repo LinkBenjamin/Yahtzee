@@ -85,6 +85,13 @@ public class Die {
         return (getValue() == die.getValue());
     } // End of equals()
 
+	/**
+	 * CompareTo is required because we want to use the Comparator class
+	 * to sort the List of dice when we evaluate.
+	 * 
+	 * @param a The other Die to compare values with
+	 * @return -1 if this is less than a, 0 if they're equal, 1 if a is less than this.
+	 */
 	public int compareTo(Die a) {
 		final int BEFORE = -1;
 	    final int EQUAL = 0;
